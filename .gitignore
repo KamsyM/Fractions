@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs/Fractions/v15/Server/sqlite3
+/Fractions/bin/Debug
+/Fractoin Tests/bin/Debug
+/Fractoin Tests/obj/Debug
+/Fractions/obj/Debug
