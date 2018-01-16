@@ -13,7 +13,7 @@ namespace Fractions
             var work = new Fraction(2,3);
             var work2 = new Fraction(1,4);
             Console.WriteLine(work);
-            Console.WriteLine(work.MultiplyBy(work2));
+            Console.WriteLine(work.DivideBy(work2));
             Console.ReadKey();
         }
     }
@@ -38,15 +38,7 @@ namespace Fractions
                 int div = GreatestCommonDivisor(ans, denominator);
                 int nume = ans / div;
                 int deno = denominator / div;
-                if (nume < deno)
-                {
-                    return new Fraction(nume ,deno);
-                }
-
-                else
-                {
-                    return (nume / deno) + "&" + (nume % deno) + "/" + deno;
-                }
+                return new Fraction(nume,deno);
                 
             }
 
@@ -59,20 +51,13 @@ namespace Fractions
                 int div = GreatestCommonDivisor(ans, lcm);
                 int nume = ans / div;
                 int deno = lcm / div;
-                if (nume < deno)
-                {
-                    return new Fraction(nume, deno);
-                }
-
-                else
-                {
-                    return (nume / deno) + "&" + (nume % deno) + "/" + deno;
-                }
+                return new Fraction(nume, deno);
                 
+
             }
         }
 
-        public string Minus(Fraction a)
+        public Fraction Minus(Fraction a)
         {
             if (a.denominator == denominator)
             {
@@ -80,15 +65,7 @@ namespace Fractions
                 int div = GreatestCommonDivisor(ans, denominator);
                 int nume = ans / div;
                 int deno = denominator / div;
-                if (nume < deno)
-                {
-                    return nume + "/" + deno;
-                }
-
-                else
-                {
-                    return (nume / deno) + "&" + (nume % deno) + "/" + deno;
-                }
+                return new Fraction(nume, deno);
                 
             }
 
@@ -101,59 +78,46 @@ namespace Fractions
                 int div = GreatestCommonDivisor(ans, lcm);
                 int nume = ans / div;
                 int deno = lcm / div;
-                if (nume < deno)
-                {
-                    return nume + "/" + deno;
-                }
-
-                else
-                {
-                    return (nume / deno) + "&" + (nume % deno) + "/" + deno;
-                }
+                return new Fraction(nume,deno);
                 
             }
         }
 
-        public string MultiplyBy(Fraction a)
+        public Fraction MultiplyBy(Fraction a)
         {
             int top = numerator * a.numerator;
             int bottom = denominator * a.denominator;
             int div = GreatestCommonDivisor(top, bottom);
             int nume = top / div;
             int deno = bottom / div;
-            if (nume < deno)
-            {
-                return nume + "/" + deno;
-            }
-
-            else
-            {
-                return (nume / deno) + "&" + (nume % deno) + "/" + deno;
-            }
+            return new Fraction(nume,deno);
         }
 
-        public string DivideBy(Fraction a)
+        public Fraction DivideBy(Fraction a)
         {
             int top = numerator * a.denominator;
             int bottom = denominator * a.numerator;
             int div = GreatestCommonDivisor(top, bottom);
             int nume = top / div;
             int deno = bottom / div;
-            if (nume < deno)
-            {
-                return nume + "/" + deno;
-            }
-
-            else
-            {
-                return (nume / deno) + "&" + (nume % deno) + "/" + deno;
-            }
+            return new Fraction(nume, deno);
             
         }
 
         public override string ToString()
         {
-            return numerator.ToString()  + "/" + denominator.ToString();
+            if (numerator < denominator)
+            {
+                return numerator.ToString() + "/" + denominator.ToString();
+            }
+
+            else
+            {
+                mixed_wholenumber = numerator / denominator;
+                numerator = numerator % denominator;
+                return mixed_wholenumber + "&" + numerator.ToString() + "/" + denominator;
+            }
+
         }
 
         public static int determineLCM(int a, int b)
