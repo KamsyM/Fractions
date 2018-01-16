@@ -22,6 +22,7 @@ namespace Fractions
     {
         private int numerator;
         private int denominator;
+        private int mixed_wholenumber;
 
         public Fraction(int numer, int denom)
         {
@@ -29,7 +30,7 @@ namespace Fractions
             denominator = denom;
         }
 
-        public string Plus(Fraction a)
+        public Fraction Plus(Fraction a)
         {
             if (a.denominator == denominator)
             {
@@ -39,7 +40,7 @@ namespace Fractions
                 int deno = denominator / div;
                 if (nume < deno)
                 {
-                    return nume + "/" + deno;
+                    return new Fraction(nume ,deno);
                 }
 
                 else
@@ -60,7 +61,7 @@ namespace Fractions
                 int deno = lcm / div;
                 if (nume < deno)
                 {
-                    return nume + "/" + deno;
+                    return new Fraction(nume, deno);
                 }
 
                 else
